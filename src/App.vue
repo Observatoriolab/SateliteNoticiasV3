@@ -1,55 +1,109 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+     <v-app-bar
+      id="home-app-bar"
+      app
+      color="white"
+      elevation="1"
+      height="80"
+    >
+      <v-img
+        :src="require('@/assets/logo.svg')"
+        class="mr-3 hidden-xs-only"
+        contain
+        max-width="52"
+        width="100%"
+      />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+      <v-img
+        :src="require('@/assets/zero-logo-light.svg')"
+        contain
+        max-width="128"
+        width="100%"
+      />
+
+      <v-spacer />
+
+      <div>
+        <v-tabs
+          class="hidden-sm-and-down"
+          optional
+        >
+          <v-tab
+            v-for="(category, i) in categories"
+            :key="i"
+            :ripple="false"
+            active-class="text--primary"
+            class="font-weight-bold"
+            min-width="96"
+            text
+          >
+            {{ category }}
+          </v-tab>
+        </v-tabs>
       </div>
+   <v-menu
+      transition="slide-x-transition"
+      bottom
+      right
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          class="deep-orange"
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Slide X Transition
+        </v-btn>
+      </template>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+     
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <MainPage />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import MainPage from "./components/MainPage";
 
 export default {
   name: "App",
 
   components: {
-    HelloWorld
+    MainPage
   },
 
   data: () => ({
+     categories: [
+        "Big Data",
+        "Pagos Digitales",
+        "CBCD",
+        "Criptoactivos",
+        "Banca abierta",
+        "Ciberseguridad",
+        "Monitoreo tecnologico",
+        "DLT"
+      ],
+      items: [
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me 2' },
+      ]
     //
   })
 };
