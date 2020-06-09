@@ -42,32 +42,34 @@
           </v-tab>
         </v-tabs>
       </div>
-   <v-menu
-      transition="slide-x-transition"
-      bottom
-      right
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          class="deep-orange"
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Slide X Transition
-        </v-btn>
-      </template>
+            <v-spacer />
 
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-        >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+         <v-menu bottom left>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                light
+                icon
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-account</v-icon>
+              </v-btn>
+            </template>
+
+            <v-list>
+              <v-list-item
+                v-for="(item, i) in items"
+                :key="i"
+
+                @click="true"
+              >
+              <a href="/accounts/logout/">
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-icon>{{ item.icon }}</v-icon></a>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+   
      
     </v-app-bar>
 
@@ -98,12 +100,11 @@ export default {
         "Monitoreo tecnologico",
         "DLT"
       ],
-      items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
-      ]
+       items: [
+          { title: 'Configuracion', icon: 'mdi-cog-outline' },
+          { title: 'Logout', icon: 'mdi-logout-variant' }
+        ],
+        right: null
     //
   })
 };
