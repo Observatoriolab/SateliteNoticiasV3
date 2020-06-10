@@ -39,20 +39,23 @@
             text
           >
             {{ category }}
+            
           </v-tab>
         </v-tabs>
       </div>
             <v-spacer />
 
-         <v-menu bottom left>
+         <v-menu offset-y>
+           
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 light
                 icon
                 v-bind="attrs"
                 v-on="on"
-              >
+              > 
                 <v-icon>mdi-account</v-icon>
+
               </v-btn>
             </template>
 
@@ -64,13 +67,15 @@
                 @click="true"
               >
               <a href="/accounts/logout/">
+
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
                 <v-icon>{{ item.icon }}</v-icon></a>
               </v-list-item>
             </v-list>
           </v-menu>
-   
-     
+                                 {{requestUser}}
+
+
     </v-app-bar>
 
     <v-content>
@@ -81,6 +86,7 @@
 
 <script>
 import MainPage from "./components/MainPage";
+import { apiService } from "@/common/api.service.js";
 
 export default {
   name: "App",
@@ -104,8 +110,23 @@ export default {
           { title: 'Configuracion', icon: 'mdi-cog-outline' },
           { title: 'Logout', icon: 'mdi-logout-variant' }
         ],
-        right: null
+        requestUser:null
+         
     //
-  })
+  }),
+   methods: {
+    //En ves de usar .then, dejarlo asincrono
+    async setUserInfo() {
+      const data = await apiService("/api/user/");
+      const requestUser = data["username"];
+      console.log(requestUser)
+      //Lo deje en el local storage del browser para ser usado y corroborar que es el usuario
+      window.localStorage.setItem("username", requestUser);
+      this.requestUser = requestUser
+    }
+  },
+  created() {
+    this.setUserInfo();
+  }
 };
 </script>
