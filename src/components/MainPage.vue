@@ -31,8 +31,9 @@
         <h1 class="display-2 font-weight-bold mb-7">
           NEWS FEED
         </h1>
-           <v-card class="d-inline-block mx-auto " raised width="65%">
-            <v-container>
+        <v-card  class="d-inline-block mx-auto mb-12" raised width="65%" v-for="(item, i) in importantLinks"
+                :key="i">
+                 <v-container>
               <v-row >
                 <v-col cols="4">
                   <v-img
@@ -51,7 +52,7 @@
                     justify="center"
                   >
                     <v-col class="px-0" >
-                      TITLE
+                      {{item.text}}
                     </v-col>
 
                     <v-col class="px-0">
@@ -64,7 +65,7 @@
                     </v-col>
 
                     <v-col class="px-0 mb-0">
-                      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe fugiat dolores ipsum maxime repellat expedita hic dolore explicabo porro dolorem eos harum quos, pariatur dignissimos error obcaecati accusamus esse possimus!</p>
+                      <p>{{item.href}}</p>
                     </v-col>
 
                     <v-col class="px-0 mb-0">
@@ -74,13 +75,13 @@
                         300
                       </v-btn>
                       <div class="text-center">
-                        <v-rating v-model="rating"></v-rating>
+                        <v-rating half-increments hover ripple  v-model="rating"></v-rating>
                       </div>
-                         <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
+                      <v-btn icon>
+                        <v-icon>mdi-square-edit-outline</v-icon>
                       </v-btn>
-                         <v-btn icon>
-                        <v-icon>mdi-bookmark</v-icon>
+                      <v-btn icon>
+                        <v-icon>mdi-arrow-expand-all</v-icon>
                       </v-btn>
                           
 
@@ -91,7 +92,12 @@
                 </v-col>
               </v-row>
             </v-container>
+                
+                </v-card>
+           <v-card >
+           
           </v-card>
+          
     </v-col>
     </v-row>
   </v-container>
