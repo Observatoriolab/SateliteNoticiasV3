@@ -16,11 +16,24 @@
                                   <v-container>
                                       <v-row >
                                         <v-col cols="4">
-                                          <v-img
-                                            height="100%"
-                                            width="100%"
-                                            src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-                                          ></v-img>
+                                          <div v-if="true">
+                                              <v-img
+                                                  height="100%"
+                                                  width="100%"
+                                                  src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                                                ></v-img>
+
+
+                                          </div>
+                                          <div v-else> 
+                                              <v-img
+                                                  height="100%"
+                                                  width="100%"
+                                                  src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                                                ></v-img>
+
+                                          </div>
+                                        
                                         </v-col>
 
                                         <v-col
@@ -32,9 +45,6 @@
                                             justify="center"
                                           >
                                             <v-col class="px-0" >
-                                              {{item.text}}
-                                              {{show[i]}}
-                                              {{i}}
 
 
                                             </v-col>
@@ -49,7 +59,7 @@
                                             </v-col>
 
                                             <v-col class="px-0 mb-0">
-                                                    <p>{{item.href}}</p>
+                                            
 
 
                                             </v-col>
@@ -111,95 +121,100 @@
                 NEWS FEED
               </h1>
              
-                        <v-card  class="d-inline-block mx-auto mt-6 mb-6" raised width="75%" 
-                          v-for="(item,i) in importantLinks"
-                                :key="i">
+              <v-card  class="d-inline-block mx-auto mt-6 mb-6" raised width="75%" 
+                v-for="(item,i) in news"
+                      :key="i">
 
-                                  <v-container>
-                                      <v-row >
-                                        <v-col cols="4">
-                                          <v-img
-                                            height="100%"
-                                            width="100%"
-                                            src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-                                          ></v-img>
-                                        </v-col>
+                        <v-container>
+                            <v-row >
+                             
+                              <v-col
+                                cols="12"
+                                class="text-center pl-0"
+                              >
+                                <v-row
+                                  class="flex-column ma-0 fill-height"
+                                  justify="center"
+                                >
+                                  <v-col class="px-0" >
+                                    <v-card-title>
 
-                                        <v-col
-                                          cols="8"
-                                          class="text-center pl-0"
-                                        >
-                                          <v-row
-                                            class="flex-column ma-0 fill-height"
-                                            justify="center"
-                                          >
-                                            <v-col class="px-0" >
-                                              {{item.text}}
+                                    {{item.title}}
 
 
-                                            </v-col>
-
-                                            <v-col class="px-0">
-                                              <v-row justify="space-around">
-                                                <font>autor</font>
-                                                <font>fecha</font>
-                                                  
-
-                                              </v-row>
-                                            </v-col>
-
-                                            <v-col class="px-0 mb-0">
-                                                    <p>{{item.href}}</p>
+                                    </v-card-title>
 
 
-                                            </v-col>
+                                  </v-col>
 
-                                            <v-col class="p3">
-                                              <v-row justify="space-around" align="center">
+                                  <v-col class="px-0">
+                                    <v-row justify="space-around">
+                                      <font>autor</font>
+                                      <font>fecha</font>
+                                        
 
-                                                            <v-btn icon>
-                                                        <v-icon>mdi-eye</v-icon>
-                                                        300
-                                                      </v-btn>
-                                                      <div class="text-center">
-                                                        <v-rating half-increments hover ripple  dense small v-model="rating"></v-rating>
-                                                      </div>
-                                                      <v-btn icon>
-                                                        <v-icon>mdi-square-edit-outline</v-icon>
-                                                      </v-btn>
-                                                      <v-btn icon>
-                                                        <v-icon>mdi-arrow-expand-all</v-icon>
-                                                      </v-btn>
-                                                        <v-btn
-                                                              icon
-                                                              @click="expand2(i)"
-                                                            >
-                                                              <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                                                            </v-btn>
-                                                          
+                                    </v-row>
+                                  </v-col>
 
-                                                      
-                                                  
-                                              </v-row>
-                                          
-                                            </v-col>
-                                          
-                                              
-                                          </v-row>
-                                        </v-col>
-                                        <v-expand-transition>
-                                                        <div v-show="show2[i]">
-                                                          <v-divider></v-divider>
+                                  <v-col class="px-0 mb-0">
 
-                                                          <v-card-text>
-                                                            I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                                                          </v-card-text>
-                                                        </div>
-                                                      </v-expand-transition>
+                                        <div style="font-size:1.2em;display:flex; flex-flow:column; justify-content:center; align-items:center"  
+                                              v-html="item.content">
+                                        </div>
 
-                                      </v-row>
-                                  </v-container>
-                        </v-card>
+                                  </v-col>
+
+                                  <v-col class="p3">
+                                    <v-row justify="space-around" align="center">
+
+                                                  <v-btn icon>
+                                              <v-icon>mdi-eye</v-icon>
+                                              300
+                                            </v-btn>
+                                            <div class="text-center">
+                                              <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
+                                            </div>
+                                            <v-btn icon>
+                                              <v-icon>mdi-square-edit-outline</v-icon>
+                                            </v-btn>
+                                            <v-btn icon>
+                                              <v-icon>mdi-arrow-expand-all</v-icon>
+                                            </v-btn>
+                                              <v-btn
+                                                    icon
+                                                    @click="expand2(i)"
+                                                  >
+                                                    <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                                  </v-btn>
+                                                
+
+                                            
+                                        
+                                    </v-row>
+                                
+                                  </v-col>
+                                
+                                    
+                                </v-row>
+                              </v-col>
+                              <v-expand-transition>
+                                    <div v-show="show2[i]">
+                                      <v-divider></v-divider>
+                                      <v-card-text>
+                                        I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                                      </v-card-text>
+                                    </div>
+                              </v-expand-transition>
+
+                            </v-row>
+                        </v-container>
+              </v-card>
+                <div class="text-center">
+                     <v-btn rounded color="primary" dark
+                          @click="getnewsLoadMore"
+                          :disabled="disableButton"
+                        >Cargar mas</v-btn>
+                </div>
 
       </v-col>
     </v-row>
@@ -207,12 +222,24 @@
 </template>
 
 <script>
+import { apiService } from "@/common/api.service.js";
+
 export default {
   name: "MainPage",
 
   data: () => ({
     show: [],
     show2: [],
+    rating: null,
+    endpoint: "/api/news/",
+    news: [],
+    updateNews: 0,
+    updatedNews: [],
+    pageNumbers: [],
+    next:null,
+    content: null,
+    contentFlag:false,
+    disableButton:false,
     ecosystem: [
       {
         text: "vuetify-loader",
@@ -274,9 +301,68 @@ export default {
       console.log("I was clicked")
       console.log(this.show2[i])
       this.$set(this.show2,i,!(this.show2[i]))
-    }
+    },
+     async delayedNews(item) {
+      await apiService(item).then(data => {    
+          this.updatedNews.push(...data.results);
+      });
+    },
+    disableLoad(){
+
+    },
+    actualContent(contentWithImage){
+        console.log(contentWithImage)
+        let actualContent = contentWithImage.match(/<img src=".*">/)
+        let final = contentWithImage.replace(actualContent,"")
+        this.content = final
+    },
+    async getnews() {
+      for (const [idx, url] of this.pageNumbers.entries()) {
+        console.log(idx)
+        await this.delayedNews(url);
+      }
+      for (var i = 0; i < this.updatedNews.length; i++) {
+        this.$set(this.news, i, this.updatedNews[i]);
+      }
+      this.updatedNews.splice(0);
+      console.log(this.news)
+      this.updateNews += 1;
+    },
+    getLastDigit(pageString) {
+      let regex = /=+\d*/.exec(pageString);
+      var nuevo = /\d+$/.exec(regex[0]);
+      return parseInt(nuevo[0]) - 1;
+    },
+    async getnewsLoadMore() {
+      this.disableButton = true
+      if (this.next) {
+        this.endpoint = this.next;
+      }
+      await apiService(this.endpoint).then(data => {
+        this.news.push(...data.results);
+        if (data.next) {
+          this.next = data.next;
+          this.pageNumbers.push(
+            "/api/news/?page=" + this.getLastDigit(this.next)
+          );
+          this.disableButton = false
+        }
+        else if (data.count<=4){
+            this.pageNumbers.push(
+            "/api/news/?page=1"
+          );
+        }
+         else {
+          this.next = null;
+        }
+     
+      });
+    },
+
   },
   created(){
+      this.getnewsLoadMore();
+    document.title = "Satelite de Noticias";
     console.log("asdasdadsadsdasads")
 
 
