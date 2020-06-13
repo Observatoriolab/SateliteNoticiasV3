@@ -1,143 +1,153 @@
 <template>
-  <v-container>
-    <v-row >
-      <v-col class="mb-4 text-center" cols="4">
-            <h1 class="display-2 font-weight-bold mb-3">
-              Noticias Trending
-            </h1>
+  <v-container fluid>
+    <v-row fluid class="mt-3">
+      <div   v-if="!drawer">
+                  <v-btn
+                        contained
+                        fab
+                        fixed
+                        color="pink"
+                        dark
+                        large
+                        @click.stop="drawer = !drawer"
+                      >
+                        <v-icon>mdi-trending-up</v-icon>
+                      </v-btn>
 
-            <v-row class="flex-column"  justify="center" > 
-              <v-sheet style="overflow:auto"  color="grey lighten-5" height="75vh" >
-                     
-                        <v-card  class="d-inline-block mx-auto mt-6 mb-6" raised width="75%" 
-                          v-for="(item,i) in importantLinks"
-                                :key="i">
+      </div>
+      <v-col v-if="drawer" cols="5"   class="text-center mb-4">
 
-                                  <v-container>
-                                      <v-row >
-                                        <v-col cols="4">
-                                          <div v-if="true">
-                                              <v-img
-                                                  height="100%"
-                                                  width="100%"
-                                                  src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-                                                ></v-img>
-
-
-                                          </div>
-                                          <div v-else> 
-                                              <v-img
-                                                  height="100%"
-                                                  width="100%"
-                                                  src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-                                                ></v-img>
-
-                                          </div>
-                                        
-                                        </v-col>
-
-                                        <v-col
-                                          cols="8"
-                                          class="text-center pl-0"
-                                        >
-                                          <v-row
-                                            class="flex-column ma-0 fill-height"
-                                            justify="center"
-                                          >
-                                            <v-col class="px-0" >
-
-
-                                            </v-col>
-
-                                            <v-col class="px-0">
-                                              <v-row justify="space-around">
-                                                <font>autor</font>
-                                                <font>fecha</font>
-                                                  
-
-                                              </v-row>
-                                            </v-col>
-
-                                            <v-col class="px-0 mb-0">
-                                            
-
-
-                                            </v-col>
-
-                                            <v-col class="p3">
-                                              <v-row justify="space-around" align="center">
-
-                                                            <v-btn icon>
-                                                        <v-icon>mdi-eye</v-icon>
-                                                        300
-                                                      </v-btn>
-                                                      <div class="text-center">
-                                                        <v-rating half-increments hover ripple  dense small v-model="rating"></v-rating>
-                                                      </div>
-                                                      <v-btn icon>
-                                                        <v-icon>mdi-square-edit-outline</v-icon>
-                                                      </v-btn>
-                                                      <v-btn icon>
-                                                        <v-icon>mdi-arrow-expand-all</v-icon>
-                                                      </v-btn>
-                                                        <v-btn
-                                                              icon
-                                                              @click="expand(i)"
-                                                            >
-                                                              <v-icon>{{ show[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                                                            </v-btn>
-                                                          
-
-                                                      
-                                                  
-                                              </v-row>
-                                          
-                                            </v-col>
-                                          
-                                              
-                                          </v-row>
-                                        </v-col>
-                                        <v-expand-transition>
-                                                        <div v-show="show[i]">
-                                                          <v-divider></v-divider>
-
-                                                          <v-card-text>
-                                                            I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                                                          </v-card-text>
-                                                        </div>
-                                                      </v-expand-transition>
-
-                                      </v-row>
-                                  </v-container>
-                        </v-card>
-              </v-sheet>
-              
-            </v-row>
-            
-
-      </v-col>
-      <v-col cols="8" class="text-center mb-4">
-              <h1 class="display-2 font-weight-bold mb-7">
-                NEWS FEED
+          <div style="display:flex; flex-flow:column; position:fixed; width:40vw">
+             <h1 class="display-2 font-weight-bold mb-7">
+                TRENDING
+                <v-btn
+                    style="float:right"
+                    color="pink"
+                    dark
+                    
+                    @click.stop="drawer = !drawer"
+                  >
+                    <v-icon>mdi-window-minimize</v-icon>
+                  </v-btn>
               </h1>
              
-              <v-card  class="d-inline-block mx-auto mt-6 mb-6" raised width="75%" 
-                v-for="(item,i) in news"
+                <v-sheet style="overflow-y:auto" color="grey lighten-5" height="100vh" >                      
+                    <v-card  class="d-inline-block mx-auto  mb-6" raised width="75%" 
+                      v-for="(item,i) in news"
+                      :key="i">
+
+                              <v-container>
+                                  <v-row >
+                                  
+                                    <v-col
+                                      cols="12"
+                                      class="text-center pl-0"
+                                    >
+                                      <v-row
+                                        class="flex-column ma-0 fill-height"
+                                        justify="center"
+                                      >
+                                        <v-col class="px-0" >
+                                          <v-card-title>
+
+                                          {{item.title}}
+
+
+                                          </v-card-title>
+
+
+                                        </v-col>
+
+                                        <v-col class="px-0">
+                                          <v-row justify="space-around">
+                                            <font>autor</font>
+                                            <font>fecha</font>
+                                              
+
+                                          </v-row>
+                                        </v-col>
+
+                                        <v-col class="px-0 mb-0">
+
+                                              <div class="content" v-html="item.content">
+                                              </div>
+
+                                        </v-col>
+
+                                        <v-col class="p3">
+                                          <v-row justify="space-around" align="center">
+
+                                                        <v-btn icon>
+                                                    <v-icon>mdi-eye</v-icon>
+                                                    300
+                                                  </v-btn>
+                                                  <div class="text-center">
+                                                    <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
+                                                  </div>
+                                                  <v-btn icon>
+                                                    <v-icon>mdi-square-edit-outline</v-icon>
+                                                  </v-btn>
+                                                  <v-btn icon>
+                                                    <v-icon>mdi-arrow-expand-all</v-icon>
+                                                  </v-btn>
+                                                    <v-btn
+                                                          icon
+                                                          @click="expand2(i)"
+                                                        >
+                                                          <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                                        </v-btn>
+                                                      
+
+                                                  
+                                              
+                                          </v-row>
+                                      
+                                        </v-col>
+                                      
+                                          
+                                      </v-row>
+                                    </v-col>
+                                    <v-expand-transition>
+                                          <div v-show="show2[i]">
+                                            <v-divider></v-divider>
+                                            <v-card-text  class="content" >
+                                              I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                                            </v-card-text>
+                                          </div>
+                                    </v-expand-transition>
+
+                                  </v-row>
+                              </v-container>
+                    </v-card>
+                </v-sheet>
+                
+            
+
+          </div>
+             
+      </v-col>
+      <v-col v-if="!drawer" cols="12" class="text-center mb-4">              
+              <h1 class="display-2 font-weight-bold mb-7">
+                    
+                NEWS FEED
+              </h1>              
+              <v-card  class="flex-column mx-auto mt-6 mb-6" raised width="60%" 
+                       v-for="(item,i) in news"
                       :key="i">
 
                         <v-container>
                             <v-row >
-                             
+                              
                               <v-col
                                 cols="12"
                                 class="text-center pl-0"
                               >
                                 <v-row
-                                  class="flex-column ma-0 fill-height"
+                                  class="flex-column ma-0 fill-height text-center"
                                   justify="center"
                                 >
-                                  <v-col class="px-0" >
-                                    <v-card-title>
+                                  <v-col class="px-0 " >
+                                    <v-card-title style="display:flex; justify-content:center">
 
                                     {{item.title}}
 
@@ -158,7 +168,7 @@
 
                                   <v-col class="px-0 mb-0">
 
-                                        <div style="font-size:1.2em;display:flex; flex-flow:column; justify-content:center; align-items:center"  
+                                        <div  class="content"   
                                               v-html="item.content">
                                         </div>
 
@@ -209,14 +219,115 @@
                             </v-row>
                         </v-container>
               </v-card>
-                <div class="text-center">
-                     <v-btn rounded color="primary" dark
+               <div class="text-center">
+                    <v-btn rounded color="primary" dark
+                        @click="getnewsLoadMore"
+                        :disabled="disableButton"
+                      >Cargar mas</v-btn>
+              </div>
+      </v-col>
+      <v-col v-else cols="7" class="text-center mb-4">
+                <h1 class="display-2 font-weight-bold mb-7">
+                     
+                  NEWS FEED
+                </h1>
+                <v-card  class="flex-column mx-auto mt-6 mb-6" raised width="80%" 
+                          v-for="(item,i) in news"
+                        :key="i">
+
+                          <v-container>
+                              <v-row >
+                              
+                                <v-col
+                                  cols="12"
+                                  class="text-center pl-0"
+                                >
+                                  <v-row
+                                    class="flex-column ma-0 fill-height text-center"
+                                    justify="center"
+                                  >
+                                    <v-col class="px-0 " >
+                                      <v-card-title style="display:flex; justify-content:center">
+
+                                      {{item.title}}
+
+
+                                      </v-card-title>
+
+
+                                    </v-col>
+
+                                    <v-col class="px-0">
+                                      <v-row justify="space-around">
+                                        <font>autor</font>
+                                        <font>fecha</font>
+                                          
+
+                                      </v-row>
+                                    </v-col>
+
+                                    <v-col class="px-0 mb-0">
+
+                                          <div  class="content"   
+                                                v-html="item.content">
+                                          </div>
+
+                                    </v-col>
+
+                                    <v-col class="p3">
+                                      <v-row justify="space-around" align="center">
+
+                                                    <v-btn icon>
+                                                <v-icon>mdi-eye</v-icon>
+                                                300
+                                              </v-btn>
+                                              <div class="text-center">
+                                                <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
+                                              </div>
+                                              <v-btn icon>
+                                                <v-icon>mdi-square-edit-outline</v-icon>
+                                              </v-btn>
+                                              <v-btn icon>
+                                                <v-icon>mdi-arrow-expand-all</v-icon>
+                                              </v-btn>
+                                                <v-btn
+                                                      icon
+                                                      @click="expand2(i)"
+                                                    >
+                                                      <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                                    </v-btn>
+                                                  
+
+                                              
+                                          
+                                      </v-row>
+                                  
+                                    </v-col>
+                                  
+                                      
+                                  </v-row>
+                                </v-col>
+                                <v-expand-transition>
+                                      <div v-show="show2[i]">
+                                        <v-divider></v-divider>
+                                        <v-card-text>
+                                          I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                                        </v-card-text>
+                                      </div>
+                                </v-expand-transition>
+
+                              </v-row>
+                          </v-container>
+                </v-card>
+                 <div class="text-center">
+                      <v-btn rounded color="primary" dark
                           @click="getnewsLoadMore"
                           :disabled="disableButton"
                         >Cargar mas</v-btn>
                 </div>
-
       </v-col>
+     
+
     </v-row>
   </v-container>
 </template>
@@ -240,6 +351,11 @@ export default {
     content: null,
     contentFlag:false,
     disableButton:false,
+     drawer: true,
+        items: [
+          { title: 'Home', icon: 'dashboard' },
+          { title: 'About', icon: 'question_answer' },
+        ],
     ecosystem: [
       {
         text: "vuetify-loader",
@@ -371,3 +487,17 @@ export default {
   
 };
 </script>
+
+<style >
+.content-font{
+
+}
+.content{
+    padding:1em;
+    font-size:1.2em;
+    display:flex; 
+    flex-flow:column; 
+    justify-content:center; 
+    align-items:center;
+}
+</style>
