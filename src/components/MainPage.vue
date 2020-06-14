@@ -1,153 +1,53 @@
 <template>
   <v-container fluid>
     <v-row fluid class="mt-3">
-      <div   v-if="!drawer">
-                  <v-btn
-                        contained
-                        fab
-                        fixed
-                        color="pink"
-                        dark
-                        large
-                        @click.stop="drawer = !drawer"
-                      >
-                        <v-icon>mdi-trending-up</v-icon>
-                      </v-btn>
-
-      </div>
-      <v-col v-if="drawer" cols="5"   class="text-center mb-4">
-
-          <div style="display:flex; flex-flow:column; position:fixed; width:40vw">
-             <h1 class="display-2 font-weight-bold mb-7">
-                TRENDING
-                <v-btn
-                    style="float:right"
+        <div   v-if="!drawer">
+            <v-btn  contained
+                    fab
+                    fixed
                     color="pink"
                     dark
-                    
+                    large
                     @click.stop="drawer = !drawer"
-                  >
-                    <v-icon>mdi-window-minimize</v-icon>
-                  </v-btn>
-              </h1>
-             
+                >
+                    <v-icon>mdi-trending-up</v-icon>
+            </v-btn>
+
+        </div>
+        <v-col v-if="drawer" cols="5"   class="text-center mb-4">
+
+            <div style="display:flex; flex-flow:column; position:fixed; width:40vw">
+                <h1 class="display-2 font-weight-bold mb-7">
+                  TRENDING
+                  <v-btn
+                      style="float:right"
+                      color="pink"
+                      dark
+                      
+                      @click.stop="drawer = !drawer"
+                    >
+                      <v-icon>mdi-window-minimize</v-icon>
+                    </v-btn>
+                </h1>
+                
                 <v-sheet style="overflow-y:auto" color="grey lighten-5" height="100vh" >                      
                     <v-card  class="d-inline-block mx-auto  mb-6" raised width="75%" 
                       v-for="(item,i) in news"
                       :key="i">
 
-                              <v-container>
-                                  <v-row >
-                                  
-                                    <v-col
-                                      cols="12"
-                                      class="text-center pl-0"
-                                    >
-                                      <v-row
-                                        class="flex-column ma-0 fill-height"
-                                        justify="center"
-                                      >
-                                        <v-col class="px-0" >
-                                          <v-card-title>
-
-                                          {{item.title}}
-
-
-                                          </v-card-title>
-
-
-                                        </v-col>
-
-                                        <v-col class="px-0">
-                                          <v-row justify="space-around">
-                                            <font>autor</font>
-                                            <font>fecha</font>
-                                              
-
-                                          </v-row>
-                                        </v-col>
-
-                                        <v-col class="px-0 mb-0">
-
-                                              <div class="content" v-html="item.content">
-                                              </div>
-
-                                        </v-col>
-
-                                        <v-col class="p3">
-                                          <v-row justify="space-around" align="center">
-
-                                                        <v-btn icon>
-                                                    <v-icon>mdi-eye</v-icon>
-                                                    300
-                                                  </v-btn>
-                                                  <div class="text-center">
-                                                    <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
-                                                  </div>
-                                                  <v-btn icon>
-                                                    <v-icon>mdi-square-edit-outline</v-icon>
-                                                  </v-btn>
-                                                  <v-btn icon>
-                                                    <v-icon>mdi-arrow-expand-all</v-icon>
-                                                  </v-btn>
-                                                    <v-btn
-                                                          icon
-                                                          @click="expand2(i)"
-                                                        >
-                                                          <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                                                        </v-btn>
-                                                      
-
-                                                  
-                                              
-                                          </v-row>
-                                      
-                                        </v-col>
-                                      
-                                          
-                                      </v-row>
-                                    </v-col>
-                                    <v-expand-transition>
-                                          <div v-show="show2[i]">
-                                            <v-divider></v-divider>
-                                            <v-card-text  class="content" >
-                                              I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                                            </v-card-text>
-                                          </div>
-                                    </v-expand-transition>
-
-                                  </v-row>
-                              </v-container>
-                    </v-card>
-                </v-sheet>
-                
-            
-
-          </div>
-             
-      </v-col>
-      <v-col v-if="!drawer" cols="12" class="text-center mb-4">              
-              <h1 class="display-2 font-weight-bold mb-7">
-                    
-                NEWS FEED
-              </h1>              
-              <v-card  class="flex-column mx-auto mt-6 mb-6" raised width="60%" 
-                       v-for="(item,i) in news"
-                      :key="i">
-
                         <v-container>
                             <v-row >
-                              
+                            
                               <v-col
                                 cols="12"
                                 class="text-center pl-0"
                               >
                                 <v-row
-                                  class="flex-column ma-0 fill-height text-center"
+                                  class="flex-column ma-0 fill-height"
                                   justify="center"
                                 >
-                                  <v-col class="px-0 " >
-                                    <v-card-title style="display:flex; justify-content:center">
+                                  <v-col class="px-0" >
+                                    <v-card-title>
 
                                     {{item.title}}
 
@@ -168,8 +68,7 @@
 
                                   <v-col class="px-0 mb-0">
 
-                                        <div  class="content"   
-                                              v-html="item.content">
+                                        <div class="content" v-html="item.content">
                                         </div>
 
                                   </v-col>
@@ -192,9 +91,9 @@
                                             </v-btn>
                                               <v-btn
                                                     icon
-                                                    @click="expand2(i)"
+                                                    @click="expand(i)"
                                                   >
-                                                    <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                                    <v-icon>{{ show[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                                                   </v-btn>
                                                 
 
@@ -208,126 +107,628 @@
                                 </v-row>
                               </v-col>
                               <v-expand-transition>
-                                    <div v-show="show2[i]">
-                                      <v-divider></v-divider>
-                                      <v-card-text>
-                                        I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                                      </v-card-text>
+                                    <div v-show="show[i]">
+                                        <v-divider></v-divider>
+                                        <v-row class="pa-4" justify="center" align="center">
+                                            <v-col cols="12">
+                                              <v-row justify="space-between">
+                                                  <v-col cols="12">
+                                                        <h6>Primarias</h6>
+
+                                                  </v-col>
+                                                  <v-col cols="6">
+                                                        <v-text-field 
+                                                                    label="Eje"
+                                                                    placeholder="Ej: Pagos digitales"
+                                                                    outlined
+                                                      ></v-text-field>    
+                                                        <v-text-field
+                                                                    label="Pais/Region"
+                                                                    placeholder="Ej: Rusia"
+                                                                    outlined
+                                                      ></v-text-field> 
+                                                  </v-col>
+                                                  <v-col cols="6">
+                                                    <v-text-field
+                                                                  label="Organismo"
+                                                                  placeholder="Ej: FinTech"
+                                                                  outlined
+                                                    ></v-text-field> 
+                                                      <v-text-field
+                                                                  label="Fecha"
+                                                                  placeholder="Placeholder"
+                                                                  outlined
+                                                    ></v-text-field>  
+                                                  </v-col>
+
+                                              </v-row>
+
+                                          </v-col>
+                                          <v-col  align-self="start" cols="12">
+                                              <h6>Secundarias</h6>
+
+                                              <v-combobox
+                                                    v-model="modelo"
+                                                    :filter="filter"
+                                                    :hide-no-data="!search"
+                                                    :items="comboItems"
+                                                    :search-input.sync="search"
+                                                    hide-selected
+                                                    label="Search for an option"
+                                                    multiple
+                                                    small-chips
+                                                    solo
+                                                  >
+                                                    <template v-slot:no-data>
+                                                      <v-list-item>
+                                                        <span class="subheading">Create</span>
+                                                        <v-chip
+                                                          :color="`${colors[nonce - 1]} lighten-3`"
+                                                          label
+                                                          small
+                                                        >
+                                                          {{ search }}
+                                                        </v-chip>
+                                                      </v-list-item>
+                                                    </template>
+                                                    <template v-slot:selection="{ attrs, item, parent, selected }">
+                                                      <v-chip
+                                                        v-if="item === Object(item)"
+                                                        v-bind="attrs"
+                                                        :color="`${item.color} lighten-3`"
+                                                        :input-value="selected"
+                                                        label
+                                                        small
+                                                      >
+                                                        <span class="pr-2">
+                                                          {{ item.text }}
+                                                        </span>
+                                                        <v-icon
+                                                          small
+                                                          @click="parent.selectItem(item)"
+                                                        >close</v-icon>
+                                                      </v-chip>
+                                                    </template>
+                                                    <template v-slot:item="{ index, item }">
+                                                      <v-text-field
+                                                        v-if="editing === item"
+                                                        v-model="editing.text"
+                                                        autofocus
+                                                        flat
+                                                        background-color="transparent"
+                                                        hide-details
+                                                        solo
+                                                        @keyup.enter="edit(index, item)"
+                                                      ></v-text-field>
+                                                      <v-chip
+                                                        v-else
+                                                        :color="`${item.color} lighten-3`"
+                                                        dark
+                                                        label
+                                                        small
+                                                      >
+                                                        {{ item.text }}
+                                                      </v-chip>
+                                                      <v-spacer></v-spacer>
+                                                      <v-list-item-action @click.stop>
+                                                        <v-btn
+                                                          icon
+                                                          @click.stop.prevent="edit(index, item)"
+                                                        >
+                                                          <v-icon>{{ editing !== item ? 'mdi-pencil' : 'mdi-check' }}</v-icon>
+                                                        </v-btn>
+                                                      </v-list-item-action>
+                                                    </template>
+                                            </v-combobox>
+
+                                          </v-col>
+                                          <v-col class="text-center" cols="12">
+                                              <h5>Bibliografia</h5>
+                                          </v-col>
+                                          <v-col cols="6">
+
+                                                    <v-autocomplete
+                                                      v-model="modelo2"
+                                                      :items="states"
+                                                      :filter="customFilter"
+                                                    
+                                                      item-text="name"
+                                                      label="Nombre"
+                                                    ></v-autocomplete>
+                                            
+                                          </v-col>
+                                          <v-col cols="6">
+                                              <v-text-field
+                                                              label="Link"
+                                                              
+                                                ></v-text-field>          
+                                            
+
+                                          </v-col>
+
+
+                                        </v-row>
                                     </div>
                               </v-expand-transition>
 
                             </v-row>
                         </v-container>
-              </v-card>
-               <div class="text-center">
+                        
+                    </v-card>
+                </v-sheet>
+                  
+            </div>
+                
+        </v-col>
+        <v-col v-if="!drawer" cols="12" class="text-center mb-4">              
+                <h1 class="display-2 font-weight-bold mb-7">
+                      
+                  NEWS FEED
+                </h1>              
+                <v-card  class="flex-column mx-auto mt-6 mb-6" raised width="60%" 
+                          v-for="(item,i) in news"
+                        :key="i">
+                    <v-container>
+                        <v-row >
+                          
+                          <v-col
+                            cols="12"
+                            class="text-center pl-0"
+                          >
+                            <v-row
+                              class="flex-column ma-0 fill-height text-center"
+                              justify="center"
+                            >
+                              <v-col class="px-0 " >
+                                <v-card-title style="display:flex; justify-content:center">
+
+                                {{item.title}}
+
+
+                                </v-card-title>
+
+
+                              </v-col>
+
+                              <v-col class="px-0">
+                                <v-row justify="space-around">
+                                  <font>autor</font>
+                                  <font>fecha</font>
+                                    
+
+                                </v-row>
+                              </v-col>
+
+                              <v-col class="px-0 mb-0">
+
+                                    <div  class="content"   
+                                          v-html="item.content">
+                                    </div>
+
+                              </v-col>
+
+                              <v-col class="p3">
+                                <v-row justify="space-around" align="center">
+
+                                              <v-btn icon>
+                                          <v-icon>mdi-eye</v-icon>
+                                          300
+                                        </v-btn>
+                                        <div class="text-center">
+                                          <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
+                                        </div>
+                                        <v-btn icon>
+                                          <v-icon>mdi-square-edit-outline</v-icon>
+                                        </v-btn>
+                                        <v-btn icon>
+                                          <v-icon>mdi-arrow-expand-all</v-icon>
+                                        </v-btn>
+                                          <v-btn
+                                                icon
+                                                @click="expand2(i)"
+                                              >
+                                                <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                              </v-btn>
+                                            
+
+                                        
+                                    
+                                </v-row>
+                            
+                              </v-col>
+                            
+                                
+                            </v-row>
+                          </v-col>
+                          <v-col cols="12">
+                              <v-expand-transition >
+                                <div v-show="show2[i]" >
+                                    <v-divider></v-divider>
+                                    <v-row class="pa-4" justify="center" align="center">
+                                        <v-col cols="12">
+                                            <v-row justify="space-between">
+                                                <v-col cols="12">
+                                                       <h6>Primarias</h6>
+
+                                                </v-col>
+                                                <v-col cols="6">
+                                                      <v-text-field 
+                                                                  label="Eje"
+                                                                  placeholder="Ej: Pagos digitales"
+                                                                  outlined
+                                                    ></v-text-field>    
+                                                      <v-text-field
+                                                                  label="Pais/Region"
+                                                                  placeholder="Ej: Rusia"
+                                                                  outlined
+                                                    ></v-text-field> 
+                                                </v-col>
+                                                <v-col cols="6">
+                                                  <v-text-field
+                                                                label="Organismo"
+                                                                placeholder="Ej: FinTech"
+                                                                outlined
+                                                  ></v-text-field> 
+                                                    <v-text-field
+                                                                label="Fecha"
+                                                                placeholder="Placeholder"
+                                                                outlined
+                                                  ></v-text-field>  
+                                                </v-col>
+
+                                            </v-row>
+
+                                        </v-col>
+                                        <v-col  align-self="start" cols="12">
+                                            <h6>Secundarias</h6>
+
+                                            <v-combobox
+                                                  v-model="modelo"
+                                                  :filter="filter"
+                                                  :hide-no-data="!search"
+                                                  :items="comboItems"
+                                                  :search-input.sync="search"
+                                                  hide-selected
+                                                  label="Search for an option"
+                                                  multiple
+                                                  small-chips
+                                                  solo
+                                                >
+                                                  <template v-slot:no-data>
+                                                    <v-list-item>
+                                                      <span class="subheading">Create</span>
+                                                      <v-chip
+                                                        :color="`${colors[nonce - 1]} lighten-3`"
+                                                        label
+                                                        small
+                                                      >
+                                                        {{ search }}
+                                                      </v-chip>
+                                                    </v-list-item>
+                                                  </template>
+                                                  <template v-slot:selection="{ attrs, item, parent, selected }">
+                                                    <v-chip
+                                                      v-if="item === Object(item)"
+                                                      v-bind="attrs"
+                                                      :color="`${item.color} lighten-3`"
+                                                      :input-value="selected"
+                                                      label
+                                                      small
+                                                    >
+                                                      <span class="pr-2">
+                                                        {{ item.text }}
+                                                      </span>
+                                                      <v-icon
+                                                        small
+                                                        @click="parent.selectItem(item)"
+                                                      >close</v-icon>
+                                                    </v-chip>
+                                                  </template>
+                                                  <template v-slot:item="{ index, item }">
+                                                    <v-text-field
+                                                      v-if="editing === item"
+                                                      v-model="editing.text"
+                                                      autofocus
+                                                      flat
+                                                      background-color="transparent"
+                                                      hide-details
+                                                      solo
+                                                      @keyup.enter="edit(index, item)"
+                                                    ></v-text-field>
+                                                    <v-chip
+                                                      v-else
+                                                      :color="`${item.color} lighten-3`"
+                                                      dark
+                                                      label
+                                                      small
+                                                    >
+                                                      {{ item.text }}
+                                                    </v-chip>
+                                                    <v-spacer></v-spacer>
+                                                    <v-list-item-action @click.stop>
+                                                      <v-btn
+                                                        icon
+                                                        @click.stop.prevent="edit(index, item)"
+                                                      >
+                                                        <v-icon>{{ editing !== item ? 'mdi-pencil' : 'mdi-check' }}</v-icon>
+                                                      </v-btn>
+                                                    </v-list-item-action>
+                                                  </template>
+                                          </v-combobox>
+
+                                        </v-col>
+                                        <v-col class="text-center" cols="12">
+                                            <h5>Bibliografia</h5>
+                                        </v-col>
+                                        <v-col cols="6">
+
+                                                  <v-autocomplete
+                                                    v-model="modelo2"
+                                                    :items="states"
+                                                    :filter="customFilter"
+                                                  
+                                                    item-text="name"
+                                                    label="Nombre"
+                                                  ></v-autocomplete>
+                                          
+                                        </v-col>
+                                        <v-col cols="6">
+                                            <v-text-field
+                                                            label="Link"
+                                                            
+                                              ></v-text-field>          
+                                          
+
+                                        </v-col>
+
+
+                                    </v-row>
+                                </div>
+                              </v-expand-transition>
+                          </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card>
+                  <div class="text-center">
                     <v-btn rounded color="primary" dark
                         @click="getnewsLoadMore"
                         :disabled="disableButton"
                       >Cargar mas</v-btn>
-              </div>
-      </v-col>
-      <v-col v-else cols="7" class="text-center mb-4">
-                <h1 class="display-2 font-weight-bold mb-7">
-                     
-                  NEWS FEED
-                </h1>
-                <v-card  class="flex-column mx-auto mt-6 mb-6" raised width="80%" 
-                          v-for="(item,i) in news"
-                        :key="i">
+                </div>
+        </v-col>
+        <v-col v-else cols="7" class="text-center mb-4">
+                  <h1 class="display-2 font-weight-bold mb-7">
+                        
+                    NEWS FEED
+                  </h1>
+                  <v-card  class="flex-column mx-auto mt-6 mb-6" raised width="80%" 
+                            v-for="(item,i) in news"
+                          :key="i">
+                      <v-container>
+                          <v-row >
+                          
+                            <v-col
+                              cols="12"
+                              class="text-center pl-0"
+                            >
+                              <v-row
+                                class="flex-column ma-0 fill-height text-center"
+                                justify="center"
+                              >
+                                <v-col class="px-0 " >
+                                  <v-card-title style="display:flex; justify-content:center">
 
-                          <v-container>
-                              <v-row >
-                              
-                                <v-col
-                                  cols="12"
-                                  class="text-center pl-0"
-                                >
-                                  <v-row
-                                    class="flex-column ma-0 fill-height text-center"
-                                    justify="center"
-                                  >
-                                    <v-col class="px-0 " >
-                                      <v-card-title style="display:flex; justify-content:center">
-
-                                      {{item.title}}
-
-
-                                      </v-card-title>
+                                  {{item.title}}
 
 
-                                    </v-col>
+                                  </v-card-title>
 
-                                    <v-col class="px-0">
-                                      <v-row justify="space-around">
-                                        <font>autor</font>
-                                        <font>fecha</font>
-                                          
 
-                                      </v-row>
-                                    </v-col>
+                                </v-col>
 
-                                    <v-col class="px-0 mb-0">
-
-                                          <div  class="content"   
-                                                v-html="item.content">
-                                          </div>
-
-                                    </v-col>
-
-                                    <v-col class="p3">
-                                      <v-row justify="space-around" align="center">
-
-                                                    <v-btn icon>
-                                                <v-icon>mdi-eye</v-icon>
-                                                300
-                                              </v-btn>
-                                              <div class="text-center">
-                                                <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
-                                              </div>
-                                              <v-btn icon>
-                                                <v-icon>mdi-square-edit-outline</v-icon>
-                                              </v-btn>
-                                              <v-btn icon>
-                                                <v-icon>mdi-arrow-expand-all</v-icon>
-                                              </v-btn>
-                                                <v-btn
-                                                      icon
-                                                      @click="expand2(i)"
-                                                    >
-                                                      <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                                                    </v-btn>
-                                                  
-
-                                              
-                                          
-                                      </v-row>
-                                  
-                                    </v-col>
-                                  
+                                <v-col class="px-0">
+                                  <v-row justify="space-around">
+                                    <font>autor</font>
+                                    <font>fecha</font>
                                       
+
                                   </v-row>
                                 </v-col>
-                                <v-expand-transition>
-                                      <div v-show="show2[i]">
-                                        <v-divider></v-divider>
-                                        <v-card-text>
-                                          I'm a thig. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-                                        </v-card-text>
+
+                                <v-col class="px-0 mb-0">
+
+                                      <div  class="content"   
+                                            v-html="item.content">
                                       </div>
-                                </v-expand-transition>
 
+                                </v-col>
+
+                                <v-col class="p3">
+                                  <v-row justify="space-around" align="center">
+
+                                                <v-btn icon>
+                                            <v-icon>mdi-eye</v-icon>
+                                            300
+                                          </v-btn>
+                                          <div class="text-center">
+                                            <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
+                                          </div>
+                                          <v-btn icon>
+                                            <v-icon>mdi-square-edit-outline</v-icon>
+                                          </v-btn>
+                                          <v-btn icon>
+                                            <v-icon>mdi-arrow-expand-all</v-icon>
+                                          </v-btn>
+                                            <v-btn
+                                                  icon
+                                                  @click="expand2(i)"
+                                                >
+                                                  <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                                </v-btn>
+                                      
+                                  </v-row>
+                              
+                                </v-col>
+                              
+                                  
                               </v-row>
-                          </v-container>
-                </v-card>
-                 <div class="text-center">
-                      <v-btn rounded color="primary" dark
-                          @click="getnewsLoadMore"
-                          :disabled="disableButton"
-                        >Cargar mas</v-btn>
-                </div>
-      </v-col>
-     
+                            </v-col>
+                            <v-expand-transition>
+                                  <div v-show="show2[i]">
+                                    <v-divider></v-divider>
+                                       <v-row class="pa-4" justify="center" align="center">
+                                        <v-col cols="12">
+                                            <v-row justify="space-between">
+                                                <v-col cols="12">
+                                                       <h6>Primarias</h6>
 
+                                                </v-col>
+                                                <v-col cols="6">
+                                                      <v-text-field 
+                                                                  label="Eje"
+                                                                  placeholder="Ej: Pagos digitales"
+                                                                  outlined
+                                                    ></v-text-field>    
+                                                      <v-text-field
+                                                                  label="Pais/Region"
+                                                                  placeholder="Ej: Rusia"
+                                                                  outlined
+                                                    ></v-text-field> 
+                                                </v-col>
+                                                <v-col cols="6">
+                                                  <v-text-field
+                                                                label="Organismo"
+                                                                placeholder="Ej: FinTech"
+                                                                outlined
+                                                  ></v-text-field> 
+                                                    <v-text-field
+                                                                label="Fecha"
+                                                                placeholder="Placeholder"
+                                                                outlined
+                                                  ></v-text-field>  
+                                                </v-col>
+
+                                            </v-row>
+
+                                        </v-col>
+                                        <v-col  align-self="start" cols="12">
+                                            <h6>Secundarias</h6>
+
+                                            <v-combobox
+                                                  v-model="modelo"
+                                                  :filter="filter"
+                                                  :hide-no-data="!search"
+                                                  :items="comboItems"
+                                                  :search-input.sync="search"
+                                                  hide-selected
+                                                  label="Search for an option"
+                                                  multiple
+                                                  small-chips
+                                                  solo
+                                                >
+                                                  <template v-slot:no-data>
+                                                    <v-list-item>
+                                                      <span class="subheading">Create</span>
+                                                      <v-chip
+                                                        :color="`${colors[nonce - 1]} lighten-3`"
+                                                        label
+                                                        small
+                                                      >
+                                                        {{ search }}
+                                                      </v-chip>
+                                                    </v-list-item>
+                                                  </template>
+                                                  <template v-slot:selection="{ attrs, item, parent, selected }">
+                                                    <v-chip
+                                                      v-if="item === Object(item)"
+                                                      v-bind="attrs"
+                                                      :color="`${item.color} lighten-3`"
+                                                      :input-value="selected"
+                                                      label
+                                                      small
+                                                    >
+                                                      <span class="pr-2">
+                                                        {{ item.text }}
+                                                      </span>
+                                                      <v-icon
+                                                        small
+                                                        @click="parent.selectItem(item)"
+                                                      >close</v-icon>
+                                                    </v-chip>
+                                                  </template>
+                                                  <template v-slot:item="{ index, item }">
+                                                    <v-text-field
+                                                      v-if="editing === item"
+                                                      v-model="editing.text"
+                                                      autofocus
+                                                      flat
+                                                      background-color="transparent"
+                                                      hide-details
+                                                      solo
+                                                      @keyup.enter="edit(index, item)"
+                                                    ></v-text-field>
+                                                    <v-chip
+                                                      v-else
+                                                      :color="`${item.color} lighten-3`"
+                                                      dark
+                                                      label
+                                                      small
+                                                    >
+                                                      {{ item.text }}
+                                                    </v-chip>
+                                                    <v-spacer></v-spacer>
+                                                    <v-list-item-action @click.stop>
+                                                      <v-btn
+                                                        icon
+                                                        @click.stop.prevent="edit(index, item)"
+                                                      >
+                                                        <v-icon>{{ editing !== item ? 'mdi-pencil' : 'mdi-check' }}</v-icon>
+                                                      </v-btn>
+                                                    </v-list-item-action>
+                                                  </template>
+                                          </v-combobox>
+
+                                        </v-col>
+                                        <v-col class="text-center" cols="12">
+                                            <h5>Bibliografia</h5>
+                                        </v-col>
+                                        <v-col cols="6">
+
+                                                  <v-autocomplete
+                                                    v-model="modelo2"
+                                                    :items="states"
+                                                    :filter="customFilter"
+                                                  
+                                                    item-text="name"
+                                                    label="Nombre"
+                                                  ></v-autocomplete>
+                                          
+                                        </v-col>
+                                        <v-col cols="6">
+                                            <v-text-field
+                                                            label="Link"
+                                                            
+                                              ></v-text-field>          
+                                          
+
+                                        </v-col>
+
+
+                                    </v-row>
+
+                                  </div>
+                            </v-expand-transition>
+
+                          </v-row>
+                      </v-container>
+                  </v-card>
+                    <div class="text-center">
+                        <v-btn rounded color="primary" dark
+                            @click="getnewsLoadMore"
+                            :disabled="disableButton"
+                          >Cargar mas</v-btn>
+                  </div>
+        </v-col>
     </v-row>
   </v-container>
 </template>
@@ -337,6 +738,49 @@ import { apiService } from "@/common/api.service.js";
 
 export default {
   name: "MainPage",
+  watch: {
+      search () {
+        // Items have already been loaded
+        if (this.items.length > 0) return
+
+        // Items have already been requested
+        if (this.isLoading) return
+
+        this.isLoading = true
+
+        // Lazily load input items
+        fetch('https://api.publicapis.org/entries')
+          .then(res => res.json())
+          .then(res => {
+            const { count, entries } = res
+            this.count = count
+            this.entries = entries
+          })
+          .catch(err => {
+            console.log(err)
+          })
+          .finally(() => (this.isLoading = false))
+      },
+    
+      modelo (val, prev) {
+        if (val.length === prev.length) return
+
+        this.modelo = val.map(v => {
+          if (typeof v === 'string') {
+            v = {
+              text: v,
+              color: this.colors[this.nonce - 1],
+            }
+
+            this.comboItems.push(v)
+
+            this.nonce++
+          }
+
+          return v
+        })
+      },
+    },
 
   data: () => ({
     show: [],
@@ -351,11 +795,40 @@ export default {
     content: null,
     contentFlag:false,
     disableButton:false,
-     drawer: true,
-        items: [
-          { title: 'Home', icon: 'dashboard' },
-          { title: 'About', icon: 'question_answer' },
-        ],
+    drawer: true,
+    activator: null,
+    attach: null,
+    colors: ['green', 'purple', 'indigo', 'cyan', 'teal', 'orange'],
+    editing: null,
+    index: -1,
+    comboItems: [
+      { header: 'Select an option or create one' },
+      {
+        text: 'Foo',
+        color: 'blue',
+      },
+      {
+        text: 'Bar',
+        color: 'red',
+      },
+    ],
+    nonce: 1,
+    menu: false,
+    modelo: [
+      {
+        text: 'Foo',
+        color: 'blue',
+      },
+    ],
+    x: 0,
+    search: null,
+    y: 0,
+
+
+    items: [
+      { title: 'Home', icon: 'dashboard' },
+      { title: 'About', icon: 'question_answer' },
+    ],
     ecosystem: [
       {
         text: "vuetify-loader",
@@ -405,9 +878,52 @@ export default {
         text: "Frequently Asked Questions",
         href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
       }
-    ]
+    ],
+    hasSaved: false,
+    model: null,
+    states: [
+      { name: 'Florida', abbr: 'FL', id: 1 },
+      { name: 'Georgia', abbr: 'GA', id: 2 },
+      { name: 'Nebraska', abbr: 'NE', id: 3 },
+      { name: 'California', abbr: 'CA', id: 4 },
+      { name: 'New York', abbr: 'NY', id: 5 },
+    ],
+    modelo2: null
   }),
+
   methods:{
+    customFilter (item, queryText) {
+        const textOne = item.name.toLowerCase()
+        const textTwo = item.abbr.toLowerCase()
+        const searchText = queryText.toLowerCase()
+
+        return textOne.indexOf(searchText) > -1 ||
+          textTwo.indexOf(searchText) > -1
+    },
+    save () {
+      this.hasSaved = true
+    },
+    edit (index, item) {
+        if (!this.editing) {
+          this.editing = item
+          this.index = index
+        } else {
+          this.editing = null
+          this.index = -1
+        }
+      },
+      filter (item, queryText, itemText) {
+        if (item.header) return false
+
+        const hasValue = val => val != null ? val : ''
+
+        const text = hasValue(itemText)
+        const query = hasValue(queryText)
+
+        return text.toString()
+          .toLowerCase()
+          .indexOf(query.toString().toLowerCase()) > -1
+      },
     expand(i){
       console.log("I was clicked")
       console.log(this.show[i])
@@ -489,9 +1005,6 @@ export default {
 </script>
 
 <style >
-.content-font{
-
-}
 .content{
     padding:1em;
     font-size:1.2em;
