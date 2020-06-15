@@ -487,7 +487,7 @@
                       >Cargar mas</v-btn>
                 </div>
         </v-col>
-        <v-col v-if="!trendingEdition" cols="6" class="text-center mb-4 ">
+        <v-col v-else-if="!trendingEdition" cols="6" class="text-center mb-4 ">
                   <h1 class="display-2 font-weight-bold mb-7">
                         
                     NEWS FEED
@@ -721,9 +721,9 @@
                   </div>
         </v-col>
         <v-col v-if="edition" class="text-center" cols="6">
-            <div style="display:flex; flex-flow:column;  width:auto">
+            <div style="display:flex; flex-flow:column; position:fixed;width:auto; height:85vh">
                 <h1 class="display-2 font-weight-bold mb-7 ">
-                  EDITIONS
+                  EDITION
                     <v-btn icon
                         style="float:right"
                         x-large
@@ -1176,6 +1176,7 @@ export default {
     modelo4:null,
     modelo5:null,
     date1: new Date().toISOString().substr(0, 10),
+    showEdition:false
 
 
   }),
