@@ -1,20 +1,20 @@
 <template>
   <v-container fluid v-bind:class="{cancelOverflow: edit}">
     <v-row fluid class="mt-3">
-        <div   v-if="!drawer">
+        <div   v-show="!drawer">
             <v-btn  contained
                     fab
                     fixed
                     color="pink"
                     dark
                     large
-                    @click.stop="trendingDrawer"
+                    @click.stop="trendingDrawerOpen"
                 >
                     <v-icon>mdi-trending-up</v-icon>
             </v-btn>
 
         </div>
-        <v-col v-if="drawer" cols="6"   class="text-center mb-4">
+        <v-col v-show="drawer" cols="6"   class="text-center mb-4">
             <div style="display:flex; flex-flow:column; position:fixed; width:40vw">
                 <h1 class="display-2 font-weight-bold mb-7">
                   TRENDING
@@ -23,7 +23,7 @@
                         color="pink"
                         dark
                         
-                        @click.stop="drawer = !drawer"
+                        @click.stop="trendingDrawerClose"
                       >
                         <v-icon>mdi-window-minimize</v-icon>
                     </v-btn>
@@ -34,7 +34,7 @@
                       v-for="(item,i) in news"
                       :key="i">
 
-                        <v-container>
+                        <v-container :class="{highlight: selected2[i]}">
                             <v-row >
                             
                               <v-col
@@ -82,7 +82,7 @@
                                             <div class="text-center">
                                               <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
                                             </div>
-                                            <v-btn icon @click="openEdition(item)">
+                                            <v-btn icon @click="openEdition2(item,i)" :disabled="disabling2[i]">
                                               <v-icon>mdi-square-edit-outline</v-icon>
                                             </v-btn>
                                             <v-btn icon>
@@ -258,15 +258,22 @@
                   
             </div>              
         </v-col>
-        <v-col v-if="!drawer && !edition" cols="12" class="text-center mb-4">              
+        <!--Cuando esta drawer y edition, no se ven las noticias, el resto si
+            !drawer || !edition
+          situacion 1: !true || !true = false || false = false => no se muestra
+          situacion 2: !false || !true = true || false = true => se muestra
+          situacion 3: !true || !false = false || true = true => se muestra
+          situacion 4: !false || !false = true || true = true => se muestra
+         -->
+        <v-col v-show="!drawer || !edition" :cols="newsFeedColumn" class="text-center mb-4" >              
                 <h1 class="display-2 font-weight-bold mb-7">
                       
                   NEWS FEED
                 </h1>              
-                <v-card  class="flex-column mx-auto mt-6 mb-6" raised width="60%" 
-                          v-for="(item,i) in news"
+                <v-card class="flex-column mx-auto mt-6 mb-6" raised width="60%"
+                        v-for="(item,i) in news"
                         :key="i">
-                    <v-container>
+                    <v-container :class="{highlight: selected[i]}">
                         <v-row >
                           
                           <v-col
@@ -315,7 +322,7 @@
                                         <div class="text-center">
                                           <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
                                         </div>
-                                        <v-btn icon  @click="openEdition(item)">
+                                        <v-btn icon  @click="openEdition(item,i)" :disabled="disabling[i]">
                                           <v-icon>mdi-square-edit-outline</v-icon>
                                         </v-btn>
                                         <v-btn icon>
@@ -486,239 +493,6 @@
                         :disabled="disableButton"
                       >Cargar mas</v-btn>
                 </div>
-        </v-col>
-        <v-col v-else-if="!trendingEdition" cols="6" class="text-center mb-4 ">
-                  <h1 class="display-2 font-weight-bold mb-7">
-                        
-                    NEWS FEED
-                  </h1>
-                  <v-card  class="flex-column mx-auto mt-6 mb-6 overflowForY" raised width="80%" 
-                            v-for="(item,i) in news"
-                          :key="i">
-                      <v-container>
-                          <v-row >
-                          
-                            <v-col
-                              cols="12"
-                              class="text-center pl-0"
-                            >
-                              <v-row
-                                class="flex-column ma-0 fill-height text-center"
-                                justify="center"
-                              >
-                                <v-col class="px-0 " >
-                                  <v-card-title style="display:flex; justify-content:center">
-
-                                  {{item.title}}
-
-
-                                  </v-card-title>
-
-
-                                </v-col>
-
-                                <v-col class="px-0">
-                                  <v-row justify="space-around">
-                                    <font>autor</font>
-                                    <font>fecha</font>
-                                      
-
-                                  </v-row>
-                                </v-col>
-
-                                <v-col class="px-0 mb-0">
-
-                                      <div  class="content"   
-                                            v-html="item.content">
-                                      </div>
-
-                                </v-col>
-
-                                <v-col class="p3">
-                                  <v-row justify="space-around" align="center">
-
-                                                <v-btn icon>
-                                            <v-icon>mdi-eye</v-icon>
-                                            300
-                                          </v-btn>
-                                          <div class="text-center">
-                                            <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
-                                          </div>
-                                          <v-btn icon @click="openEdition(item)">
-                                            <v-icon>mdi-square-edit-outline</v-icon>
-                                          </v-btn>
-                                          <v-btn icon>
-                                            <v-icon>mdi-arrow-expand-all</v-icon>
-                                          </v-btn>
-                                            <v-btn
-                                                  icon
-                                                  @click="expand2(i)"
-                                                >
-                                                  <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-                                                </v-btn>
-                                      
-                                  </v-row>
-                              
-                                </v-col>
-                              
-                                  
-                              </v-row>
-                            </v-col>
-                            <v-expand-transition>
-                                  <div v-show="show2[i]">
-                                    <v-divider></v-divider>
-                                       <v-row class="pa-4" justify="center" align="center">
-                                        <v-col cols="12">
-                                            <v-row justify="space-between">
-                                                <v-col cols="12">
-                                                       <h6>Primarias</h6>
-
-                                                </v-col>
-                                                <v-col cols="6">
-                                                      <v-text-field 
-                                                                  label="Eje"
-                                                                  placeholder="Ej: Pagos digitales"
-                                                                  outlined
-                                                    ></v-text-field>    
-                                                      <v-text-field
-                                                                  label="Pais/Region"
-                                                                  placeholder="Ej: Rusia"
-                                                                  outlined
-                                                    ></v-text-field> 
-                                                </v-col>
-                                                <v-col cols="6">
-                                                  <v-text-field
-                                                                label="Organismo"
-                                                                placeholder="Ej: FinTech"
-                                                                outlined
-                                                  ></v-text-field> 
-                                                    <v-text-field
-                                                                label="Fecha"
-                                                                placeholder="Placeholder"
-                                                                outlined
-                                                  ></v-text-field>  
-                                                </v-col>
-
-                                            </v-row>
-
-                                        </v-col>
-                                        <v-col  align-self="start" cols="12">
-                                            <h6>Secundarias</h6>
-
-                                            <v-combobox
-                                                  v-model="modelo"
-                                                  :filter="filter"
-                                                  :hide-no-data="!search"
-                                                  :items="comboItems"
-                                                  :search-input.sync="search"
-                                                  hide-selected
-                                                  label="Search for an option"
-                                                  multiple
-                                                  small-chips
-                                                  solo
-                                                >
-                                                  <template v-slot:no-data>
-                                                    <v-list-item>
-                                                      <span class="subheading">Create</span>
-                                                      <v-chip
-                                                        :color="`${colors[nonce - 1]} lighten-3`"
-                                                        label
-                                                        small
-                                                      >
-                                                        {{ search }}
-                                                      </v-chip>
-                                                    </v-list-item>
-                                                  </template>
-                                                  <template v-slot:selection="{ attrs, item, parent, selected }">
-                                                    <v-chip
-                                                      v-if="item === Object(item)"
-                                                      v-bind="attrs"
-                                                      :color="`${item.color} lighten-3`"
-                                                      :input-value="selected"
-                                                      label
-                                                      small
-                                                    >
-                                                      <span class="pr-2">
-                                                        {{ item.text }}
-                                                      </span>
-                                                      <v-icon
-                                                        small
-                                                        @click="parent.selectItem(item)"
-                                                      >close</v-icon>
-                                                    </v-chip>
-                                                  </template>
-                                                  <template v-slot:item="{ index, item }">
-                                                    <v-text-field
-                                                      v-if="editing === item"
-                                                      v-model="editing.text"
-                                                      autofocus
-                                                      flat
-                                                      background-color="transparent"
-                                                      hide-details
-                                                      solo
-                                                      @keyup.enter="edit(index, item)"
-                                                    ></v-text-field>
-                                                    <v-chip
-                                                      v-else
-                                                      :color="`${item.color} lighten-3`"
-                                                      dark
-                                                      label
-                                                      small
-                                                    >
-                                                      {{ item.text }}
-                                                    </v-chip>
-                                                    <v-spacer></v-spacer>
-                                                    <v-list-item-action @click.stop>
-                                                      <v-btn
-                                                        icon
-                                                        @click.stop.prevent="edit(index, item)"
-                                                      >
-                                                        <v-icon>{{ editing !== item ? 'mdi-pencil' : 'mdi-check' }}</v-icon>
-                                                      </v-btn>
-                                                    </v-list-item-action>
-                                                  </template>
-                                          </v-combobox>
-
-                                        </v-col>
-                                        <v-col class="text-center" cols="12">
-                                            <h5>Bibliografia</h5>
-                                        </v-col>
-                                        <v-col cols="6">
-
-                                                  <v-autocomplete
-                                                    v-model="modelo2"
-                                                    :items="states"
-                                                    :filter="customFilter"
-                                                  
-                                                    item-text="name"
-                                                    label="Nombre"
-                                                  ></v-autocomplete>
-                                          
-                                        </v-col>
-                                        <v-col cols="6">
-                                            <v-text-field
-                                                            label="Link"
-                                                            
-                                              ></v-text-field>          
-                                          
-
-                                        </v-col>
-
-
-                                    </v-row>
-
-                                  </div>
-                            </v-expand-transition>
-
-                          </v-row>
-                      </v-container>
-                  </v-card>
-                    <div class="text-center">
-                        <v-btn rounded color="primary" dark
-                            @click="getnewsLoadMore"
-                            :disabled="disableButton"
-                          >Cargar mas</v-btn>
-                  </div>
         </v-col>
         <v-col v-if="edition" class="text-center" cols="6">
             <div style="display:flex; flex-flow:column; position:fixed;width:auto; height:85vh">
@@ -1047,7 +821,7 @@ export default {
     content: null,
     contentFlag:false,
     disableButton:false,
-    drawer: true,
+    drawer: false,
     drawer2:false,
     edition:false,
     edit2:false,
@@ -1057,7 +831,7 @@ export default {
     editing: null,
     index: -1,
     item:null,
-    trendingEdition:false,
+    item2:null,
     comboItems: [
       { header: 'Select an option or create one' },
       {
@@ -1176,35 +950,97 @@ export default {
     modelo4:null,
     modelo5:null,
     date1: new Date().toISOString().substr(0, 10),
-    showEdition:false
+    showEdition:false,
+    newsFeedColumn:12,
+    selected:[],
+    disabling:[],
+    selected2:[],
+    disabling2:[],
+    itemIndexPrior:-1,
+    itemIndexActual:0,
 
+    itemIndexPrior2:-1,
+    itemIndexActual2:0
 
   }),
 
   methods:{
+    highlighter(index){
+      console.log(index)
+      if (this.selected[index] == false) {
+        this.$set(this.selected,index, true);
+        this.$set(this.disabling,index,true)
+      } else if (this.selected[index] == true) {
+        this.$set(this.selected,index, false);
+        this.$set(this.disabling,index,false)
+
+      }
+
+        this.$set(this.selected,this.itemIndexPrior, false);
+        this.$set(this.disabling,this.itemIndexPrior, false);
+      
+
+    },
+    highlighter2(index){
+      if (this.selected2[index] == false) {
+        this.$set(this.selected2,index, true);
+        this.$set(this.disabling2,index,true)
+      } else if (this.selected2[index] == true) {
+        this.$set(this.selected2,index, false);
+        this.$set(this.disabling2,index,false)
+
+      }
+        this.$set(this.selected2,this.itemIndexPrior2, false);
+        this.$set(this.disabling2,this.itemIndexPrior2, false);
+
+      
+    },
     closeEdition(){
         this.edition = !(this.edition)
-
-        this.trendingEdition = !(this.trendingEdition)
-        if(this.trendingEdition && !(this.drawer)){
-             this.trendingEdition = !(this.trendingEdition)
+        if(!(this.drawer)){
+           this.newsFeedColumn = 12
+        }
+        if(this.drawer){
+          this.highlighter2(this.itemIndexActual2)
+        }
+        else{
+          this.highlighter(this.itemIndexActual)
 
         }
     },
-    trendingDrawer(){
+    trendingDrawerOpen(){
       this.drawer = !(this.drawer)
       if(this.edition){
         this.edition = !(this.edition)
       }
+      this.newsFeedColumn = 6
     },
-    openEdition(item){
+    trendingDrawerClose(){
+      this.drawer = false
+      this.newsFeedColumn = 12
+
+    },
+    openEdition(item,index){
       console.log("abri la edicion")
       this.item = item
-      this.edition = !(this.edition)
+      this.itemIndexPrior = this.itemIndexActual
+      this.itemIndexActual = index
+      this.edition = true
+      console.log(index)
       console.log(this.edition)
-      if(this.edition && this.drawer){
-        this.trendingEdition = true
-      }
+      this.newsFeedColumn = 6
+      this.highlighter(index)
+    },
+    openEdition2(item,index){
+      console.log("abri la edicion")
+      this.item = item
+      this.itemIndexPrior2 = this.itemIndexActual2
+      this.itemIndexActual2 = index
+      this.edition = true
+      console.log(index)
+      console.log(this.edition)
+      this.newsFeedColumn = 6
+      this.highlighter2(index)
     },
     customFilter (item, queryText) {
         const textOne = item.name.toLowerCase()
@@ -1285,13 +1121,21 @@ export default {
         this.endpoint = this.next;
       }
       await apiService(this.endpoint).then(data => {
+        
         this.news.push(...data.results);
+        for(let i = 0; i < this.news.length; i++) {
+            this.selected.push(false);
+            this.disabling.push(false)
+            this.selected2.push(false);
+            this.disabling2.push(false)
+        }
         if (data.next) {
           this.next = data.next;
           this.pageNumbers.push(
             "/api/news/?page=" + this.getLastDigit(this.next)
           );
           this.disableButton = false
+          
         }
         else if (data.count<=4){
             this.pageNumbers.push(
@@ -1308,8 +1152,8 @@ export default {
   },
   created(){
       this.getnewsLoadMore();
-    document.title = "Satelite de Noticias";
-    console.log("asdasdadsadsdasads")
+      document.title = "Satelite de Noticias";
+
 
 
   }
@@ -1333,5 +1177,10 @@ export default {
 
 .cancelOverflow{
   overflow:hidden;
+}
+
+.highlight{
+  box-shadow: -3px 3px 32px 20px rgba(8,2,181,1);
+
 }
 </style>
