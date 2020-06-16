@@ -1,7 +1,7 @@
 <template>
   <v-container fluid v-bind:class="{cancelOverflow: edit}">
     <v-row fluid class="mt-3">
-        <div   v-show="!drawer">
+        <div   v-show="!drawer && !edition">
             <v-btn  contained
                     fab
                     fixed
@@ -14,7 +14,7 @@
             </v-btn>
 
         </div>
-        <v-col v-show="drawer" cols="6"   class="text-center mb-4">
+        <v-col v-show="drawer" cols="6"   class="text-center mb-4 ">
             <div style="display:flex; flex-flow:column; position:fixed; width:40vw">
                 <h1 class="display-2 font-weight-bold mb-7">
                   TRENDING
@@ -30,7 +30,7 @@
                 </h1>
                 
                 <v-sheet style="overflow-y:auto" color="grey lighten-5" height="100vh" >                      
-                    <v-card  class="d-inline-block mx-auto  mb-6" raised width="75%" 
+                    <v-card  class="d-inline-block mx-auto  mb-6 mt-6" raised width="75%" 
                       v-for="(item,i) in news"
                       :key="i">
 
@@ -505,7 +505,7 @@
                         dark
                         
 
-                        @click.stop="closeEdition"
+                        @click.stop="closeEdition(false)"
                       >
                         <v-icon>mdi-close-box</v-icon>
                     </v-btn>
@@ -960,7 +960,8 @@ export default {
     itemIndexActual:0,
 
     itemIndexPrior2:-1,
-    itemIndexActual2:0
+    itemIndexActual2:0,
+    actualIndex: -1
 
   }),
 
@@ -970,14 +971,15 @@ export default {
       if (this.selected[index] == false) {
         this.$set(this.selected,index, true);
         this.$set(this.disabling,index,true)
-      } else if (this.selected[index] == true) {
-        this.$set(this.selected,index, false);
-        this.$set(this.disabling,index,false)
-
       }
+      console.log(this.itemIndexPrior)
+      if(index !== this.itemIndexPrior){
 
         this.$set(this.selected,this.itemIndexPrior, false);
         this.$set(this.disabling,this.itemIndexPrior, false);
+      }
+      
+
       
 
     },
@@ -985,27 +987,28 @@ export default {
       if (this.selected2[index] == false) {
         this.$set(this.selected2,index, true);
         this.$set(this.disabling2,index,true)
-      } else if (this.selected2[index] == true) {
-        this.$set(this.selected2,index, false);
-        this.$set(this.disabling2,index,false)
-
       }
+      if(index !== this.itemIndexPrior2){
+
         this.$set(this.selected2,this.itemIndexPrior2, false);
         this.$set(this.disabling2,this.itemIndexPrior2, false);
+      }
 
       
     },
-    closeEdition(){
-        this.edition = !(this.edition)
+    closeEdition(closingDrawer){
+        this.edition = false
+        console.log(this.actualIndex)
         if(!(this.drawer)){
            this.newsFeedColumn = 12
         }
-        if(this.drawer){
-          this.highlighter2(this.itemIndexActual2)
+        if(this.drawer || closingDrawer){
+          this.$set(this.selected2,this.actualIndex, false);
+          this.$set(this.disabling2,this.actualIndex, false);
         }
         else{
-          this.highlighter(this.itemIndexActual)
-
+          this.$set(this.selected,this.actualIndex, false);
+          this.$set(this.disabling,this.actualIndex, false);
         }
     },
     trendingDrawerOpen(){
@@ -1017,14 +1020,16 @@ export default {
     },
     trendingDrawerClose(){
       this.drawer = false
-      this.newsFeedColumn = 12
+      this.closeEdition(true)
 
     },
     openEdition(item,index){
       console.log("abri la edicion")
       this.item = item
+      this.actualIndex = index
       this.itemIndexPrior = this.itemIndexActual
       this.itemIndexActual = index
+      
       this.edition = true
       console.log(index)
       console.log(this.edition)
@@ -1034,6 +1039,7 @@ export default {
     openEdition2(item,index){
       console.log("abri la edicion")
       this.item = item
+      this.actualIndex = index
       this.itemIndexPrior2 = this.itemIndexActual2
       this.itemIndexActual2 = index
       this.edition = true
