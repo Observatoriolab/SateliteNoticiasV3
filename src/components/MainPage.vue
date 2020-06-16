@@ -512,7 +512,7 @@
                    
                 </h1>
                 
-                <v-sheet class="overflowForY" color="grey lighten-5" height="100vh" >                      
+                <v-sheet class="overflowForY" style="overflow-y:auto" color="grey lighten-5" height="100vh" >                      
                        <v-card  class="flex-column mx-auto mt-6 mb-6" raised  
                           >
                               <v-container>
