@@ -12,18 +12,20 @@
         <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/theme/default.css">
         <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
         <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+        <link href="https://satelite-de-noticias.herokuapp.com/static/bundle.css" rel="stylesheet" type="text/css"></link>
         {% block style %}
+          
         {% endblock %}
     </head>
     <body>
         {% block content %}
         {% endblock %}      
+            <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
-         <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
         {% block js %}
+
         {% endblock %}
     </body>
 </html>
