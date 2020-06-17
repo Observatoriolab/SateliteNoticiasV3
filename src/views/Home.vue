@@ -5,6 +5,8 @@
 </template>
 
 <script>
+require('@/assets/main.css')
+
 // @ is an alias to /src
 import MainPage from "@/components/MainPage.vue";
 
