@@ -87,6 +87,7 @@
 <script>
 import MainPage from "./components/MainPage";
 import { apiService } from "@/common/api.service.js";
+require('@/assets/main.css')
 
 export default {
   name: "App",
