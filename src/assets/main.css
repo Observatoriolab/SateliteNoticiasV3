@@ -1,0 +1,20 @@
+.content{
+    padding:1em;
+    font-size:1.2em;
+    display:flex; 
+    flex-flow:column; 
+    justify-content:center; 
+    align-items:center;
+}
+.overflowForY{
+  overflow-y:auto;
+}
+
+.cancelOverflow{
+  overflow:hidden;
+}
+
+.highlight{
+  box-shadow: -3px 3px 32px 20px rgba(8,2,181,1);
+
+}

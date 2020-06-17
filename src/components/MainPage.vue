@@ -1169,7 +1169,7 @@ export default {
 </script>
 
 <style >
-.content{
+/* .content{
     padding:1em;
     font-size:1.2em;
     display:flex; 
@@ -1188,5 +1188,5 @@ export default {
 .highlight{
   box-shadow: -3px 3px 32px 20px rgba(8,2,181,1);
 
-}
+} */
 </style>
