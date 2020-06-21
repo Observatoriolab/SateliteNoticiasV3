@@ -41,7 +41,7 @@
               <v-icon>mdi-window-minimize</v-icon>
         </v-btn>
         <v-col v-show="drawer" :cols="newsFeedColumn" class="text-center mb-4">
-                  <h1 class="display-2 font-weight-bold mb-7">
+                  <h1 class="display-2 font-weight-bold mb-7 acolor">
                     TRENDING
                   </h1>
                   
@@ -1166,9 +1166,8 @@ export default {
     text-align: justify;
     text-justify: inter-cluster;
 }
-
-.redcolor{
-  color:red;
+.acolor{
+  color:blue;
 }
 
 </style>
