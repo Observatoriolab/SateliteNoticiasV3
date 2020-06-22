@@ -93,11 +93,11 @@
                                               <div class="text-center">
                                                 <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
                                               </div>
-                                              <v-btn icon @click="openEdition2(item,i)" :disabled="disabling2[i]">
+                                              <v-btn color="blue" @click="openEdition2(item,i)" :disabled="disabling2[i]">
                                                 <v-icon>mdi-square-edit-outline</v-icon>
                                               </v-btn>
                                                <v-btn
-                                                      icon
+                                                      color="darkGray"
                                                       @click="expand(i)"
                                                     >
                                                       <v-icon>{{ show[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
@@ -316,12 +316,14 @@
                                         <div class="text-center">
                                           <v-rating half-increments hover ripple  dense  v-model="rating"></v-rating>
                                         </div>
-                                         <v-btn icon  @click="openEdition(item,i)" :disabled="disabling[i]">
+                                         <v-btn color="blue"  @click="openEdition(item,i)" :disabled="disabling[i]">
                                           <v-icon>mdi-square-edit-outline</v-icon>
                                         </v-btn>
                                           <v-btn 
-                                                icon
+                                                
+                                                color="darkGray"
                                                 @click="expand2(i)"
+                                                
                                           >
                                             <v-icon>{{ show2[i] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                                           </v-btn>
@@ -503,8 +505,8 @@
                    
                 </h1>
                 
-                <v-sheet class="overflowForY" style="overflow-y:auto" color="grey lighten-5" height="100vh" >                      
-                       <v-card  class="flex-column mx-auto mt-6 mb-6" raised  
+                <div class="overflowForY" style="overflow-y:auto" color="grey lighten-5" height="100vh" >                      
+                       <v-card  class="flex-column mx-auto mt-2 mb-6 elevation-12"  
                           >
                               <v-container>
                                     <v-row >
@@ -530,7 +532,7 @@
                                                   </v-col>
                                                   <v-col class="px-0 mb-0">
                                                       <div style="float:right">
-                                                        <v-btn icon
+                                                        <v-btn 
                                                               color="pink"
                                                               dark
                                                               @click="allowEditing = !allowEditing"
@@ -741,7 +743,7 @@
                         </v-card>
                       
 
-                </v-sheet>
+                </div>
                   
             </div>
         </v-col>       
