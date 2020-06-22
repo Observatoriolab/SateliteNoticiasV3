@@ -43,39 +43,38 @@
           </v-tab>
         </v-tabs>
       </div>
-            <v-spacer />
+      <v-spacer />
 
-         <v-menu offset-y>
-           
+       <v-menu
+          transition="slide-y-transition"
+          
+          >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                light
-                icon
+                class="purple"
+                color="primary"
+                dark
                 v-bind="attrs"
                 v-on="on"
-              > 
+                
+              >
                 <v-icon>mdi-account</v-icon>
-
+                {{requestUser}}
               </v-btn>
             </template>
-
-            <v-list>
-              <v-list-item
-                v-for="(item, i) in items"
-                :key="i"
-
-                @click="true"
-              >
-              <a href="/accounts/logout/">
-
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-                <v-icon>{{ item.icon }}</v-icon></a>
-              </v-list-item>
-            </v-list>
+             <v-list >
+                  <v-list-item
+                    v-for="item in accountItems"
+                    :key="item.title"
+                  >
+                      <v-btn >
+                        <a :href="item.ref"><v-icon>  {{ item.icon }}   </v-icon> {{item.title}} </a>
+                      </v-btn>
+                
+                  </v-list-item>
+                </v-list>
           </v-menu>
-                                 {{requestUser}}
-
-
+        
     </v-app-bar>
 
     <v-content>
@@ -107,11 +106,16 @@ export default {
         "Monitoreo tecnologico",
         "DLT"
       ],
-       items: [
-          { title: 'Configuracion', icon: 'mdi-cog-outline' },
-          { title: 'Logout', icon: 'mdi-logout-variant' }
-        ],
-        requestUser:null
+      accountToggle:false,
+      accountItems: [
+          { title: 'My Account', icon: 'mdi-account',ref:'' },
+          { title: 'Log out', icon: 'mdi-logout', ref:'/accounts/logout/' },
+      ],
+      items: [
+        { title: 'Configuracion', icon: 'mdi-cog-outline' },
+        { title: 'Logout', icon: 'mdi-logout-variant' }
+      ],
+      requestUser:null
          
     //
   }),

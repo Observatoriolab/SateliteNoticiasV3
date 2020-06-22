@@ -1169,7 +1169,7 @@ export default {
     text-justify: inter-cluster;
 }
 .acolor{
-  color:blue;
+  color:black;
 }
 
 </style>
