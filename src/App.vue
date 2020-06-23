@@ -6,48 +6,75 @@
       color="white"
       elevation="1"
       height="80"
-    >
-      <v-img
-        :src="require('@/assets/logo.svg')"
-        class="mr-3 hidden-xs-only"
-        contain
-        max-width="52"
-        width="100%"
-      />
-
-      <v-img
-        :src="require('@/assets/zero-logo-light.svg')"
-        contain
-        max-width="128"
-        width="100%"
-      />
-
+    >   
       <v-spacer />
 
       <div>
-        <v-tabs
-          class="hidden-sm-and-down"
-          optional
-        >
-          <v-tab
-            v-for="(category, i) in categories"
-            :key="i"
-            :ripple="false"
-            active-class="text--primary"
-            class="font-weight-bold"
-            min-width="96"
-            text
-          >
-            {{ category }}
+        <v-menu bottom :offset-y="true" :close-on-content-click="false">
+        <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Dropdown
+            </v-btn>
+          </template>
+          <v-tabs vertical>
+                  <v-tab>
+                    <v-icon left>mdi-account</v-icon>
+                    Option 1
+                  </v-tab>
+                  <v-tab>
+                    <v-icon left>mdi-lock</v-icon>
+                    Option 2
+                  </v-tab>
+                  <v-tab>
+                    <v-icon left>mdi-access-point</v-icon>
+                    Option 3
+                  </v-tab>
             
-          </v-tab>
-        </v-tabs>
+                  <v-tab-item>
+                    <v-card flat>
+                      <v-card-text>
+                        <p>
+                                                   Contenido, botones, etc
+
+                        </p>
+            
+                      </v-card-text>
+                    </v-card>
+                  </v-tab-item>
+                  <v-tab-item>
+                    <v-card flat>
+                      <v-card-text>
+                        <p>
+                          Contenido, botones, etc
+                        </p>
+            
+                       
+                      </v-card-text>
+                    </v-card>
+                  </v-tab-item>
+                  <v-tab-item>
+                    <v-card flat>
+                      <v-card-text>
+                        <p>
+                          Contenido, botones, etc
+                        </p>
+            
+                      </v-card-text>
+                    </v-card>
+                  </v-tab-item>
+                </v-tabs>
+        </v-menu>
       </div>
       <v-spacer />
 
        <v-menu
           transition="slide-y-transition"
-          
+          bottom  :offset-y="true"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -67,9 +94,7 @@
                     v-for="item in accountItems"
                     :key="item.title"
                   >
-                      <v-btn >
                         <a :href="item.ref"><v-icon>  {{ item.icon }}   </v-icon> {{item.title}} </a>
-                      </v-btn>
                 
                   </v-list-item>
                 </v-list>
