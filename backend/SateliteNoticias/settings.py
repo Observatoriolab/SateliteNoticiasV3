@@ -53,12 +53,13 @@ INSTALLED_APPS = [
     'webpack_loader',
     'taggit',
     'taggit_serializer',
-
+    'corsheaders',
     'backend.users',
     'backend.news.apps.NewsConfig'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -164,6 +165,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_EMAIL_REQUIRED = (True)
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

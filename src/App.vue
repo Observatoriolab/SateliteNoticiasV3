@@ -39,8 +39,7 @@
                     <v-card flat>
                       <v-card-text>
                         <p>
-                                                   Contenido, botones, etc
-
+                         Contenido, botones, etc
                         </p>
             
                       </v-card-text>
@@ -94,7 +93,7 @@
                     v-for="item in accountItems"
                     :key="item.title"
                   >
-                        <a :href="item.ref"><v-icon>  {{ item.icon }}   </v-icon> {{item.title}} </a>
+                        <a :href="item.ref" style="text-decoration:none"><v-icon>  {{ item.icon }}   </v-icon> {{item.title}} </a>
                 
                   </v-list-item>
                 </v-list>
