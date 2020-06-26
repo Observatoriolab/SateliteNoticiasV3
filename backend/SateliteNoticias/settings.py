@@ -168,7 +168,7 @@ ACCOUNT_EMAIL_REQUIRED = (True)
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-    'https://satelite-de-noticias2.herokuapp.com',
+    'https://satelitenoticias.herokuapp.com',
     'http://localhost:8080'
 )
 REST_FRAMEWORK = {
