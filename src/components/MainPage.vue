@@ -1148,6 +1148,54 @@ export default {
      
       });
     },
+  /*async setUserInfo() {
+      let endpoint ="http://satelite-de-noticias.herokuapp.com/api/rest-auth/login/ "
+      await apiService(endpoint, "POST", {
+          username:"admin",
+          password:"adminpass"
+
+      }).then(data => {
+
+        this.credential = data["key"]; 
+        console.log(this.credential)
+
+        //Lo deje en el local storage del browser para ser usado y corroborar que es el usuario
+        window.localStorage.setItem("credential", this.credential);
+        this.getUsername()
+     
+      });
+
+    },
+    async logout(title){
+      var endpoint;
+      if(title == "Log out"){
+        endpoint = "http://satelite-de-noticias.herokuapp.com/api/rest-auth/logout/"
+         await apiService(endpoint, "POST", undefined, this.credential).then(data => {
+          
+            console.log("me sali chavos ", data)
+          });
+      }
+      else if(title == "Log in"){
+          this.setUserInfo()
+      }
+      else{
+        endpoint = "http://satelite-de-noticias.herokuapp.com/api/news/"
+         await apiService(endpoint, "GET", undefined, this.credential).then(data => {
+          
+            console.log("la data v8")
+            console.log(data)
+          });
+      }
+     
+
+    },
+    async getUsername(){
+        const data = await apiService("http://satelite-de-noticias.herokuapp.com/api/user/",false, undefined, this.credential);
+        this.requestUser = data["username"]
+        console.log('este es el username: ',this.requestUser)
+        
+    } */
+  
 
   },
   created(){

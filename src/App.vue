@@ -135,8 +135,7 @@ export default {
           { title: 'My Account', icon: 'mdi-account',ref:'' },
           { title: 'Log out', icon: 'mdi-logout', ref:'/accounts/logout/' },
       ],
-      items: [
-        { title: 'Configuracion', icon: 'mdi-cog-outline' },
+      items: [        { title: 'Configuracion', icon: 'mdi-cog-outline' },
         { title: 'Logout', icon: 'mdi-logout-variant' }
       ],
       requestUser:null
