@@ -9,6 +9,12 @@ class News(models.Model):
     title = models.CharField(max_length=240,blank=True)
     content = models.TextField(blank=True)
     fullContent = models.TextField(blank=True)
+
+    source = models.TextField(blank=True)
+    axis = models.TextField(blank=True)
+    country = models.TextField(blank=True)
+    date = models.TextField(blank=True)
+
     relevance = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                     related_name="relevance")
     irrelevance = models.ManyToManyField(settings.AUTH_USER_MODEL,
