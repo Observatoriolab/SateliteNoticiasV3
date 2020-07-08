@@ -10,10 +10,10 @@ class News(models.Model):
     content = models.TextField(blank=True)
     fullContent = models.TextField(blank=True)
 
-    source = models.TextField(blank=True)
-    axis = models.TextField(blank=True)
-    country = models.TextField(blank=True)
-    date = models.TextField(blank=True)
+    source = models.CharField(max_length=240,blank=True)
+    axis = models.CharField(max_length=240,blank=True)
+    country =  models.CharField(max_length=240,blank=True)
+    date =  models.CharField(max_length=240,blank=True)
 
     relevance = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                     related_name="relevance")
