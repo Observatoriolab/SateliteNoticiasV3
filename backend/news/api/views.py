@@ -22,7 +22,7 @@ class NewsViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-class TrendingNewsListAPIView():
+class TrendingNewsListAPIView(generics.ListAPIView):
     serializer_class = Newserializer
     permission_classes = [IsAuthenticated]
 
