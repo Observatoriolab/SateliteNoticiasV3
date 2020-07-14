@@ -27,6 +27,7 @@ class NewsListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        logging.debug('aqui va algo')
 
         listFormat = self.kwargs.get('value')
         #Convertirlo a lista
