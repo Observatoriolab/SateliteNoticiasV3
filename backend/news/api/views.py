@@ -22,6 +22,15 @@ class NewsViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+class TrendingNewsListAPIView():
+    serializer_class = Newserializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        logging.debug('aqui va algo')
+        return News.objects.all().order_by("-author_count")
+
+
 class NewsListAPIView(generics.ListAPIView):
     serializer_class = Newserializer
     permission_classes = [IsAuthenticated]

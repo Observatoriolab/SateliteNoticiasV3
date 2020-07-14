@@ -26,6 +26,8 @@ class News(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
 
     authors = models.TextField(blank=True)
+    author_count = models.BigIntegerField(default=0)
+
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE,
                                 related_name="news")

@@ -13,7 +13,9 @@ urlpatterns = [
     path("news/tags/<str:value>/",
         qv.NewsListAPIView.as_view(),
         name="news-list"),
-
+    path("news/trending/",
+        qv.TrendingNewsListAPIView.as_view(),
+        name="news-trending"),
     path("news/<int:pk>/rating/",
         qv.NewsRatingAPIView.as_view(),
         name="news-rating"),
