@@ -45,6 +45,11 @@ urlpatterns = [
     path("news/<slug:slug>/editions/",
         qv.EditionListAPIView.as_view(),
         name="edition-list"),
+    
+    path("news/<slug:slug>/editions/first/",
+        qv.EditionFirstListAPIView.as_view(),
+        name="edition-list-first"),
+
 
     path("news/<slug:slug>/edition/",
         qv.EditionCreateAPIView.as_view(),

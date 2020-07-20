@@ -163,6 +163,12 @@ class EditionCreateAPIView(generics.CreateAPIView):
 
         serializer.save(author=request_user, news=news)
 
+class EditionFirstListAPIView(generics.ListCreateAPIView):
+    serializer_class = EditionSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Edition.objects.filter(news__slug=kwarg_slug).order_by("-created_at").first()
 
 class EditionListAPIView(generics.ListCreateAPIView):
     serializer_class = EditionSerializer
