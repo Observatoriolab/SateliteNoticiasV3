@@ -170,8 +170,8 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'https://satelitenoticias.herokuapp.com',
     'http://satelitenoticias.herokuapp.com',
-
     'http://localhost:8080',
+    'http://172.17.167.157:8080',
     'http://satelite-scheduler.herokuapp.com'
 )
 REST_FRAMEWORK = {
