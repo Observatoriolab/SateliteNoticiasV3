@@ -12,6 +12,7 @@ class News(models.Model):
 
     source = models.CharField(max_length=240,blank=True)
     axis = models.CharField(max_length=240,blank=True)
+    secondaryAxis = models.CharField(max_length=240,blank=True)
     country =  models.CharField(max_length=240,blank=True)
     date =  models.CharField(max_length=240,blank=True)
 
@@ -51,6 +52,9 @@ class Edition(models.Model):
     bibliography_name = models.TextField(blank=True)
     bibliography_link = models.TextField(blank=True)
     #cambio nuevo
+    axis = models.CharField(max_length=240,blank=True)
+    secondaryAxis = models.CharField(max_length=240,blank=True)
+    country =  models.CharField(max_length=240,blank=True)
 
     body = models.TextField()
 
