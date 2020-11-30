@@ -165,7 +165,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_EMAIL_REQUIRED = (True)
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = (
     'https://satelitenoticias.herokuapp.com',
