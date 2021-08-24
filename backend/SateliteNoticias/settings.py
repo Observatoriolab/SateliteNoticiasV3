@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(SETTINGS_DIR)
 SECRET_KEY = '-yfc1z9s0xhz=iy5$qp5hn%bmv0*04+jgzx-xp2*js$)4c=h-*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['satelite-de-noticias.herokuapp.com','localhost','172.17.167.157']
 
